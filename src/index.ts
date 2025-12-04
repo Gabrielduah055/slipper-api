@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import connetDB from "./config/mongodb";
 import adminRouter from "./route/adminRouter";
+import productRouter from "./route/productRouter";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/admin", adminRouter);
+app.use("/api/product", productRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
