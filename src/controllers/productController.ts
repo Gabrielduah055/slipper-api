@@ -68,13 +68,18 @@ export const createProduct: RequestHandler = async (
       category,
       productName,
       productPrice,
-      productImage,
-      productThumnailImages,
       productStock,
       productSize,
       productDescription,
       isActive,
     } = req.body;
+
+    const files = req.files as {
+      [field:string]: Express.Multer.File[];
+    }
+
+    const mainImageFile = files?.productImage?.[0];
+    const thumbnailImagesFiles = files?.productThumbnailImages;
 
     // Field‑level validation
     const errors: Record<string, string> = {};
@@ -99,14 +104,11 @@ export const createProduct: RequestHandler = async (
       errors.productPrice = "Product price is required and must be a number";
     }
 
-    if (!productImage || String(productImage).trim() === "") {
+    if (!mainImageFile) {
       errors.productImage = "Main product image is required";
     }
 
-    if (
-      !Array.isArray(productThumnailImages) ||
-      productThumnailImages.length === 0
-    ) {
+    if (!thumbnailImagesFiles || thumbnailImagesFiles.length === 0) {
       errors.productThumnailImages = "At least one thumbnail image is required";
     }
 
@@ -130,12 +132,16 @@ export const createProduct: RequestHandler = async (
       return;
     }
 
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const productImageUrl = `${baseUrl}/uploads/${mainImageFile!.filename}`;
+    const thumnailUrls = thumbnailImagesFiles!.map(file => `${baseUrl}/uploads/${file.filename}`);
+
     const product = new Product({
       category,
       productName,
       productPrice,
-      productImage,
-      productThumnailImages: productThumnailImages || [],
+      productImage:productImageUrl,
+      productThumnailImages:thumnailUrls,
       productStock,
       productSize,
       productDescription,
