@@ -5,6 +5,7 @@ import cors from "cors";
 import connetDB from "./config/mongodb";
 import adminRouter from "./route/adminRouter";
 import productRouter from "./route/productRouter";
+import path  from "path";
 
 dotenv.config();
 
