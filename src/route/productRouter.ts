@@ -12,9 +12,10 @@ import { auth } from "../middlewares/auth";
 const productRouter = Router();
 
 //public;
+productRouter.get("/categories", getProductCategories);
 productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
-productRouter.get("/categories", getProductCategories)
+
 
 //protected admin only
 productRouter.post("/", auth, createProduct);
