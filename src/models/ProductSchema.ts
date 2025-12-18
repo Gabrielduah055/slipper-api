@@ -2,9 +2,12 @@ import mongoose from "mongoose";
 
 import { IProduct } from "../interface/productInterface";
 
+const PRODUCT_CATEGORIES = ["Half Shoe", "Sandal", "Slippers", "Shoe", "Sneaker", "Others"] as const;
+
 const productSchema = new mongoose.Schema({
     category: {
         type: String,
+        enum: PRODUCT_CATEGORIES,
         required: true,
         trim: true
     },
@@ -36,6 +39,11 @@ const productSchema = new mongoose.Schema({
     },
     productDescription: {
         type: String,
+        required: true,
+        trim: true
+    },
+    productSize: {
+        type: Number,
         required: true,
         trim: true
     },
