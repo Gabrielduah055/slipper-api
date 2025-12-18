@@ -1,6 +1,21 @@
 import { Request, Response, RequestHandler } from "express";
 import Product from "../models/ProductSchema";
 
+const PRODUCT_CATEGORIES = ["Half Shoe", "Sandal", "Slippers", "Shoe", "Sneaker", "Others"] as const;
+
+
+export const getProductCategories: RequestHandler = async (req: Request, res: Response) => {
+  try {
+    res.status(200).json({
+      message: 'Product categories fetched successfully',
+      categories: PRODUCT_CATEGORIES,
+    })
+  } catch (error) {
+    console.error('Error getting product categories:', error);
+    res.status(500).json({ message: 'Failed to get product categories' });
+  }
+}
+
 // Get all products
 export const getAllProducts: RequestHandler = async (
   req: Request,
@@ -56,6 +71,7 @@ export const createProduct: RequestHandler = async (
       productImage,
       productThumnailImages,
       productStock,
+      productSize,
       productDescription,
       isActive,
     } = req.body;
@@ -69,6 +85,10 @@ export const createProduct: RequestHandler = async (
 
     if (!productName || String(productName).trim() === "") {
       errors.productName = "Product name is required";
+    }
+
+    if(!productSize || isNaN(Number(productSize))) {
+      errors.productSize = "Product size is required and must be a number";
     }
 
     if (
@@ -117,6 +137,7 @@ export const createProduct: RequestHandler = async (
       productImage,
       productThumnailImages: productThumnailImages || [],
       productStock,
+      productSize,
       productDescription,
       isActive: isActive || true,
     });

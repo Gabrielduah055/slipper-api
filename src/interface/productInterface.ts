@@ -1,13 +1,16 @@
 import { Document } from "mongoose";
 
+export type ProductCategory = "Half Shoe" | "Sandal" | "Slippers" | "Shoe" | "Sneaker" | "Others";
+
 export interface IProduct extends Document {
-    category: string;
+    category: ProductCategory;
     productName: string;
     productPrice: number;
     productImage: string;
     productThumnailImages: string[];
     productStock: number;
     productDescription: string;
+    productSize:number,
     isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
