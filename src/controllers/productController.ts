@@ -64,6 +64,9 @@ export const createProduct: RequestHandler = async (
   res: Response
 ): Promise<void> => {
   try {
+
+    console.log('Files Recieved:', req.files);
+    console.log('Body Recieved:', req.body);
     const {
       category,
       productName,
