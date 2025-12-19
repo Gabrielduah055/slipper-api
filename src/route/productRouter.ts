@@ -17,15 +17,16 @@ productRouter.get("/categories", getProductCategories);
 productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
 
-
 //protected admin only
-productRouter.post("/",
+productRouter.post(
+  "/",
   auth,
   upload.fields([
-    { name: 'productImage', maxCount: 1 },
-    {name: 'productThumbnailImages', maxCount:5}
+    { name: "productImage", maxCount: 1 },
+    { name: "productThumbnailImages", maxCount: 5 },
   ]),
-  createProduct);
+  createProduct
+);
 productRouter.put("/:id", auth, updateProduct);
 productRouter.delete("/:id", auth, deleteProduct);
 
