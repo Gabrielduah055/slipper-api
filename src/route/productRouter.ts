@@ -20,11 +20,11 @@ productRouter.get("/:id", getProductById);
 //protected admin only
 productRouter.post(
   "/",
-  auth,
   upload.fields([
     { name: "productImage", maxCount: 1 },
     { name: "productThumbnailImages", maxCount: 5 },
   ]),
+  auth,
   createProduct
 );
 productRouter.put("/:id", auth, updateProduct);
