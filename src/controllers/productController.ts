@@ -112,7 +112,7 @@ export const createProduct: RequestHandler = async (
     }
 
     if (!thumbnailImagesFiles || thumbnailImagesFiles.length === 0) {
-      errors.productThumnailImages = "At least one thumbnail image is required";
+      errors.productThumbnailImages = "At least one thumbnail image is required";
     }
 
     if (
@@ -144,7 +144,7 @@ export const createProduct: RequestHandler = async (
       productName,
       productPrice,
       productImage:productImageUrl,
-      productThumnailImages:thumnailUrls,
+      productThumbnailImages:thumnailUrls,
       productStock,
       productSize,
       productDescription,
