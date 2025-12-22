@@ -148,7 +148,7 @@ export const createProduct: RequestHandler = async (
       productStock,
       productSize,
       productDescription,
-      isActive: isActive || true,
+      isActive: isActive ==  "true",
     });
 
     const saved = await product.save();
