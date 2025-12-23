@@ -1,6 +1,4 @@
 import express, { Express, Request, Response } from "express";
-dotenv.config();
-
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -9,6 +7,8 @@ import adminRouter from "./route/adminRouter";
 import productRouter from "./route/productRouter";
 import path from "path";
 import fs from 'fs';
+
+dotenv.config();
 
 
 
