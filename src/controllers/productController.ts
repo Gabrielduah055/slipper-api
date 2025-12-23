@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler } from "express";
 import Product from "../models/ProductSchema";
-import { uploadBufferToCloudinary } from "../utils/cloudinay_upload";
+import { uploadBufferToCloudinary } from "../utils/cloudinary_upload";
 
 const PRODUCT_CATEGORIES = ["Half Shoe", "Sandal", "Slippers", "Shoe", "Sneaker", "Others"] as const;
 
