@@ -1,6 +1,6 @@
 import { Request, Response, RequestHandler } from "express";
 import Product from "../models/ProductSchema";
-import { uploadBuffurToCloudinary } from "../utils/cloudinay_upload";
+import { uploadBufferToCloudinary } from "../utils/cloudinay_upload";
 
 const PRODUCT_CATEGORIES = ["Half Shoe", "Sandal", "Slippers", "Shoe", "Sneaker", "Others"] as const;
 
@@ -137,13 +137,13 @@ export const createProduct: RequestHandler = async (
     }
 
     
-    const productImageUrl = await uploadBuffurToCloudinary(
+    const productImageUrl = await uploadBufferToCloudinary(
       mainImageFile!.buffer,
       "products/main"
     );
     const thumnailUrls = await Promise.all(
       thumbnailImagesFiles!.map(file => 
-        uploadBuffurToCloudinary(file.buffer, 'products/thumbnails')
+        uploadBufferToCloudinary(file.buffer, 'products/thumbnails')
       )
     )
 

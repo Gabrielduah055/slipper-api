@@ -1,8 +1,8 @@
 
-import cloudinary from "../config/cloundinary";
+import cloudinary from "../config/cloudinary";
 import streamifier from 'streamifier';
 
-export const uploadBuffurToCloudinary = (
+export const uploadBufferToCloudinary = (
     buffer: Buffer,
     folder = "products"
 ): Promise<string> => {
