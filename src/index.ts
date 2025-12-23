@@ -1,4 +1,6 @@
 import express, { Express, Request, Response } from "express";
+dotenv.config();
+
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -8,7 +10,7 @@ import productRouter from "./route/productRouter";
 import path from "path";
 import fs from 'fs';
 
-dotenv.config();
+
 
 const app: Express = express();
 const port = process.env.PORT || 5000;
