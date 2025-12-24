@@ -10,8 +10,9 @@ export const uploadBufferToCloudinary = (
         const stream = cloudinary.uploader.upload_stream(
             { folder },
             (error, result) => {
-                if (result?.secure_url) resolve(result.secure_url);
-                else reject(error)
+                if(error) return reject(error);
+                if (!result?.secure_url) return reject(new Error("No secure_url returned from Cloudinary"));
+                resolve(result.secure_url);
             }
         );
 

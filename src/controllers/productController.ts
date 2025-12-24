@@ -164,9 +164,12 @@ export const createProduct: RequestHandler = async (
       message: "Product created successfully",
       product: saved,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error creating product:", error);
-    res.status(500).json({ message: "Failed to create product" });
+    res.status(500).json({
+      message: "Failed to create product",
+      error: error?.message || error,
+     });
   }
 };
 
