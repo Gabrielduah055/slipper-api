@@ -1,4 +1,4 @@
-import { Request, Response, RequestHandler } from "express";
+import e, { Request, Response, RequestHandler } from "express";
 import Product from "../models/ProductSchema";
 import { uploadBufferToCloudinary } from "../utils/cloudinary_upload";
 
@@ -180,10 +180,44 @@ export const updateProduct: RequestHandler = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const updated = await Product.findByIdAndUpdate(id, req.body, {
+
+    const files = req.files as {
+      [filed: string]: Express.Multer.File[]
+    };
+    const newThumbnailFiles = files?.productThumbnailImages || [];
+
+    const newThumbnailUrl = await Promise.all(
+      newThumbnailFiles.map(file =>
+        uploadBufferToCloudinary(file.buffer, 'products/thumbnails')
+      )
+    );
+
+    let existingThumbnailUrls = req.body.productThumbnailImages || [];
+    if (!Array.isArray(existingThumbnailUrls)) {
+      existingThumbnailUrls = [existingThumbnailUrls];
+    }
+
+    //handling the main image
+    let mainImageUrl = req.body.productImage;
+    if (files?.productImage?.[0]) { 
+      mainImageUrl = await uploadBufferToCloudinary(
+        files.productImage[0].buffer,
+        'products/main'
+      );
+    }
+
+    const allThumbnailUrls = [...existingThumbnailUrls, ...newThumbnailUrl];
+
+    const updateData = {
+      ...req.body,
+      productImage: mainImageUrl,
+      productThumbnailImages: allThumbnailUrls
+    }
+
+    const updated = await Product.findByIdAndUpdate(id, updateData, {
       new: true,
       runValidators: true,
-    });
+    })
 
     if (!updated) {
       res.status(404).json({ message: "Product not found" });
