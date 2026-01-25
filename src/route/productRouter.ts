@@ -27,7 +27,15 @@ productRouter.post(
   ]),
   createProduct
 );
-productRouter.put("/:id", auth, updateProduct);
+productRouter.put(
+  "/:id",
+  auth,
+  upload.fields([
+    { name: "productImage", maxCount: 1 },
+    { name: "productThumbnailImages", maxCount: 5 },
+  ]),
+  updateProduct
+);
 productRouter.delete("/:id", auth, deleteProduct);
 
 export default productRouter;
