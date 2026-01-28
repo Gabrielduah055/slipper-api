@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const connetDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI as string,
-      {dbName: "slipper-api"}
+    const conn = await mongoose.connect(
+      `${process.env.MONGODB_URI}slipper-api`
     );
     console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
