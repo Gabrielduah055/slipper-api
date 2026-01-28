@@ -9,7 +9,7 @@ export const getAllCustomers: RequestHandler = async (
   try {
     const customers = await Customer.find().sort({ createdAt: -1 });
     res.status(200).json({
-      message: "Customers fetched successfully",
+      message: "Customers fetched successfully Weldone Gabriel",
       customers,
     });
   } catch (error) {
