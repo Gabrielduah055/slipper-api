@@ -17,7 +17,7 @@ productRouter.get("/categories", getProductCategories);
 productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
 
-//protected admin only
+
 productRouter.post(
   "/",
   auth,
