@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "commonjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon src/index.ts"
-  },
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "build": "node --max-old-space-size=460 ./node_modules/typescript/bin/tsc",
+  "start": "node dist/index.js",
+  "dev": "nodemon src/index.ts"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
