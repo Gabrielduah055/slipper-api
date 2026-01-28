@@ -2,7 +2,7 @@ import e, { Request, Response, RequestHandler } from "express";
 import Product from "../models/ProductSchema";
 import { uploadBufferToCloudinary } from "../utils/cloudinary_upload";
 
-const PRODUCT_CATEGORIES = ["Half Shoe", "Sandal", "Slippers", "Shoe", "Sneaker", "Others"] as const;
+const PRODUCT_CATEGORIES = ["Half Shoe", "Sandal", "Slippers", "Shoe", "Sneaker", "Custom"] as const;
 
 
 export const getProductCategories: RequestHandler = async (req: Request, res: Response) => {
