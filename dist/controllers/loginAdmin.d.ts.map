@@ -1,1 +1,0 @@
-{"version":3,"file":"loginAdmin.d.ts","sourceRoot":"","sources":["../../src/controllers/loginAdmin.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAY,cAAc,EAAE,MAAM,SAAS,CAAC;AAG5D,OAAO,EAAE,MAAM,EAAE,MAAM,6BAA6B,CAAC;AAErD,MAAM,WAAW,WAAY,SAAQ,OAAO;IACxC,KAAK,CAAC,EAAE,MAAM,CAAC;CAClB;AAED,eAAO,MAAM,UAAU,EAAE,cAyCxB,CAAA"}
